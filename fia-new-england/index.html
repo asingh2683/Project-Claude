@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FIA New England</title>
+<meta name="description" content="Foundation of Indian Americans (FIA)-New England is a 501 (C) 3 non-profit organization celebrating Indian heritage and serving communities across New England.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fbf8f3;
+    --surface: #ffffff;
+    --surface-alt: #f3ede3;
+    --ink: #1c1f2a;
+    --ink-soft: #545a6b;
+    --line: #e4ddd0;
+    --saffron: #e8731a;
+    --saffron-deep: #c25a0c;
+    --green: #1f7a4d;
+    --navy: #16224a;
+    --on-dark: #f6f2ea;
+    --radius: 14px;
+    --shadow: 0 10px 30px rgba(22, 34, 74, .08);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #12141b;
+      --surface: #1a1d27;
+      --surface-alt: #20242f;
+      --ink: #eeeae2;
+      --ink-soft: #a7abb8;
+      --line: #2e3240;
+      --saffron: #f28c3a;
+      --saffron-deep: #f5a462;
+      --green: #4cb985;
+      --navy: #0c1226;
+      --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #12141b; --surface: #1a1d27; --surface-alt: #20242f; --ink: #eeeae2;
+    --ink-soft: #a7abb8; --line: #2e3240; --saffron: #f28c3a; --saffron-deep: #f5a462;
+    --green: #4cb985; --navy: #0c1226; --shadow: 0 10px 30px rgba(0,0,0,.35);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.65 Inter, system-ui, sans-serif;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  .wrap { width: min(1140px, 100% - 32px); margin-inline: auto; }
+  h1, h2, h3 { font-family: Fraunces, Georgia, serif; line-height: 1.15; margin: 0 0 .5em; }
+  h2 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); }
+  .eyebrow {
+    display: inline-block; font-size: .78rem; font-weight: 600; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--saffron-deep); margin-bottom: .75rem;
+  }
+  .lead { color: var(--ink-soft); font-size: 1.08rem; max-width: 62ch; }
+  section { padding: 88px 0; }
+
+  /* Tricolor ribbon */
+  .ribbon { height: 5px; background: linear-gradient(90deg, var(--saffron) 0 33.3%, #fff 33.3% 66.6%, var(--green) 66.6%); }
+
+  /* Header */
+  header {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px); border-bottom: 1px solid var(--line);
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 72px; }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .logo {
+    width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--navy); color: #fff; font: 700 .95rem Fraunces, serif; letter-spacing: .02em;
+    box-shadow: inset 0 0 0 3px var(--saffron);
+  }
+  .brand-text strong { display: block; font-family: Fraunces, serif; font-size: 1.1rem; line-height: 1.1; }
+  .brand-text span { font-size: .75rem; color: var(--ink-soft); }
+  .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; margin: 0; padding: 0; }
+  .nav-links a { text-decoration: none; font-weight: 500; font-size: .95rem; color: var(--ink-soft); }
+  .nav-links a:hover { color: var(--ink); }
+  .menu-btn { display: none; background: none; border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; color: var(--ink); cursor: pointer; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 999px;
+    font-weight: 600; font-size: .95rem; text-decoration: none; border: 2px solid transparent; cursor: pointer;
+    transition: transform .15s ease, background .15s ease;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--saffron); color: #fff; }
+  .btn-primary:hover { background: var(--saffron-deep); }
+  .btn-ghost { border-color: currentColor; }
+  .nav .btn { padding: 9px 18px; }
+
+  /* Hero */
+  .hero {
+    position: relative; overflow: hidden; color: var(--on-dark);
+    background:
+      radial-gradient(circle at 85% 20%, rgba(232,115,26,.35), transparent 45%),
+      radial-gradient(circle at 10% 90%, rgba(31,122,77,.35), transparent 45%),
+      var(--navy);
+    padding: 110px 0 120px;
+  }
+  .hero .eyebrow { color: #ffb877; }
+  .hero h1 { font-size: clamp(2.4rem, 6vw, 4.2rem); max-width: 15ch; }
+  .hero p { font-size: 1.15rem; max-width: 56ch; color: #d6d9e4; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
+  .chakra {
+    position: absolute; right: -120px; top: 50%; transform: translateY(-50%);
+    width: 520px; height: 520px; opacity: .12; color: #fff; pointer-events: none;
+  }
+
+  /* Stats */
+  .stats { margin-top: -56px; position: relative; z-index: 2; padding: 0; }
+  .stat-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); background: var(--surface);
+    border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow);
+  }
+  .stat { padding: 28px 24px; text-align: center; }
+  .stat + .stat { border-left: 1px solid var(--line); }
+  .stat b { display: block; font: 700 2rem Fraunces, serif; color: var(--saffron-deep); }
+  .stat span { font-size: .9rem; color: var(--ink-soft); }
+
+  /* About */
+  .about-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 64px; align-items: center; }
+  .pillars { display: grid; gap: 16px; }
+  .pillar {
+    display: flex; gap: 16px; padding: 20px; background: var(--surface);
+    border: 1px solid var(--line); border-radius: var(--radius);
+  }
+  .pillar .ic {
+    flex: 0 0 44px; height: 44px; border-radius: 12px; display: grid; place-items: center;
+    background: var(--surface-alt); color: var(--saffron-deep);
+  }
+  .pillar h3 { font-size: 1.1rem; margin-bottom: .2em; }
+  .pillar p { margin: 0; color: var(--ink-soft); font-size: .95rem; }
+
+  /* Programs */
+  .programs { background: var(--surface-alt); }
+  .section-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: 40px; }
+  .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    overflow: hidden; display: flex; flex-direction: column;
+  }
+  .card-art { height: 150px; display: grid; place-items: center; color: #fff; }
+  .card-art svg { width: 56px; height: 56px; }
+  .art-1 { background: linear-gradient(135deg, var(--saffron), #f2a65a); }
+  .art-2 { background: linear-gradient(135deg, var(--navy), #34468a); }
+  .art-3 { background: linear-gradient(135deg, var(--green), #4ea97a); }
+  .card-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+  .card-body h3 { font-size: 1.25rem; }
+  .card-body p { color: var(--ink-soft); margin: 0 0 16px; flex: 1; }
+  .link { font-weight: 600; color: var(--saffron-deep); text-decoration: none; }
+  .link:hover { text-decoration: underline; }
+
+  /* Events */
+  .events-list { display: grid; gap: 16px; }
+  .event {
+    display: grid; grid-template-columns: 92px 1fr auto; gap: 24px; align-items: center;
+    padding: 20px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  }
+  .date {
+    text-align: center; border-radius: 12px; padding: 10px 0; background: var(--surface-alt);
+    border-top: 4px solid var(--saffron);
+  }
+  .date b { display: block; font: 700 1.8rem/1 Fraunces, serif; }
+  .date span { font-size: .78rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); }
+  .event h3 { font-size: 1.15rem; margin-bottom: .2em; }
+  .event p { margin: 0; color: var(--ink-soft); font-size: .93rem; }
+
+  /* Involve */
+  .involve { background: var(--navy); color: var(--on-dark); }
+  .involve .lead { color: #c9cde0; }
+  .involve .eyebrow { color: #ffb877; }
+  .involve-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+  .involve-card {
+    padding: 32px 28px; border-radius: var(--radius);
+    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12);
+  }
+  .involve-card h3 { font-size: 1.35rem; }
+  .involve-card p { color: #c9cde0; margin: 0 0 22px; }
+  .involve-card .btn-ghost { color: var(--on-dark); }
+  .involve-card.highlight { background: var(--saffron); border-color: var(--saffron); }
+  .involve-card.highlight p { color: #fff3e8; }
+  .involve-card.highlight .btn { background: #fff; color: var(--saffron-deep); }
+
+  /* Newsletter */
+  .newsletter {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 48px; box-shadow: var(--shadow);
+  }
+  .newsletter form { display: flex; gap: 10px; flex-wrap: wrap; }
+  .newsletter input {
+    flex: 1 1 220px; padding: 13px 18px; border-radius: 999px; border: 1px solid var(--line);
+    background: var(--bg); color: var(--ink); font: inherit;
+  }
+  .newsletter input:focus { outline: 2px solid var(--saffron); outline-offset: 1px; }
+  .form-note { font-size: .85rem; color: var(--green); margin: 10px 0 0; min-height: 1.3em; }
+
+  /* Footer */
+  footer { background: var(--navy); color: #c9cde0; padding: 64px 0 28px; font-size: .93rem; }
+  .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; }
+  footer h4 { color: #fff; font-size: .85rem; letter-spacing: .1em; text-transform: uppercase; margin: 0 0 14px; }
+  footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  footer a { text-decoration: none; }
+  footer a:hover { color: #fff; }
+  footer .brand-text strong { color: #fff; }
+  footer .brand-text span { color: #9ea4bb; }
+  .foot-bottom {
+    margin-top: 48px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.12);
+    display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: .85rem; color: #9ea4bb;
+  }
+
+  /* Responsive */
+  @media (max-width: 960px) {
+    .about-grid, .newsletter { grid-template-columns: 1fr; gap: 40px; }
+    .card-grid, .involve-grid { grid-template-columns: 1fr 1fr; }
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+    .stat:nth-child(3) { border-left: 0; }
+    .stat:nth-child(n+3) { border-top: 1px solid var(--line); }
+    .foot-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 760px) {
+    section { padding: 64px 0; }
+    .menu-btn { display: inline-flex; }
+    .nav-links {
+      display: none; position: absolute; top: 72px; left: 0; right: 0; flex-direction: column; align-items: stretch;
+      gap: 0; background: var(--surface); border-bottom: 1px solid var(--line); padding: 8px 16px 16px;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li a { display: block; padding: 12px 4px; }
+    .nav-links .btn { justify-content: center; margin-top: 8px; }
+    .card-grid, .involve-grid { grid-template-columns: 1fr; }
+    .event { grid-template-columns: 72px 1fr; }
+    .event .btn { grid-column: 1 / -1; justify-content: center; }
+    .newsletter { padding: 28px 22px; }
+    .foot-grid { grid-template-columns: 1fr; }
+    .hero { padding: 80px 0 100px; }
+    .chakra { width: 360px; height: 360px; right: -160px; }
+  }
+</style>
+</head>
+<body>
+<div class="ribbon"></div>
+
+<header>
+  <nav class="wrap nav" aria-label="Main">
+    <a class="brand" href="#top">
+      <span class="logo">FIA</span>
+      <span class="brand-text"><strong>FIA New England</strong><span>Foundation of Indian Americans</span></span>
+    </a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#programs">Programs</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#involve">Get Involved</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a class="btn btn-primary" href="#donate">Donate</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="top">
+  <!-- Hero -->
+  <section class="hero">
+    <svg class="chakra" viewBox="0 0 100 100" fill="none" stroke="currentColor" aria-hidden="true">
+      <circle cx="50" cy="50" r="46" stroke-width="3"/>
+      <circle cx="50" cy="50" r="6" fill="currentColor"/>
+      <g stroke-width="1.4" id="spokes"></g>
+    </svg>
+    <div class="wrap">
+      <span class="eyebrow">A 501(c)(3) non-profit · Serving New England</span>
+      <h1>Celebrating heritage. Building community.</h1>
+      <p>The Foundation of Indian Americans of New England brings people together through culture, service and civic engagement — sharing the richness of India with our neighbors across Massachusetts, Connecticut, Rhode Island, New Hampshire, Vermont and Maine.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#events">See upcoming events</a>
+        <a class="btn btn-ghost" href="#involve">Become a member</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats (replace with real figures) -->
+  <div class="stats">
+    <div class="wrap stat-grid">
+      <div class="stat"><b>6</b><span>New England states served</span></div>
+      <div class="stat"><b>50+</b><span>Partner associations</span></div>
+      <div class="stat"><b>100K+</b><span>Annual event attendees</span></div>
+      <div class="stat"><b>1,000+</b><span>Volunteer hours each year</span></div>
+    </div>
+  </div>
+
+  <!-- About -->
+  <section id="about">
+    <div class="wrap about-grid">
+      <div>
+        <span class="eyebrow">Who we are</span>
+        <h2>One community, many traditions</h2>
+        <p class="lead">FIA New England is an umbrella non-profit that unites Indian American individuals, families and community organizations across the region. We celebrate the diversity of India's languages, faiths and cultures, and we work to strengthen the bonds between the Indian American community and the broader New England community we call home.</p>
+        <p class="lead">Run entirely by volunteers, we organize signature cultural festivals, support charitable causes, empower youth, and give our community a voice in civic life.</p>
+        <a class="link" href="#about">Read our story &rarr;</a>
+      </div>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17l-6.1 3.4 1.5-6.8L2.2 9l6.9-.7z"/></svg></div>
+          <div><h3>Culture &amp; Heritage</h3><p>Festivals, performing arts and celebrations that share India's traditions with every generation.</p></div>
+        </div>
+        <div class="pillar">
+          <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg></div>
+          <div><h3>Service &amp; Charity</h3><p>Food drives, health camps and disaster relief that give back to New England and beyond.</p></div>
+        </div>
+        <div class="pillar">
+          <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg></div>
+          <div><h3>Civic Engagement</h3><p>Connecting our community with local leaders and encouraging participation in public life.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs -->
+  <section id="programs" class="programs">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">What we do</span>
+          <h2>Our programs</h2>
+          <p class="lead">Year-round initiatives that celebrate culture and strengthen community.</p>
+        </div>
+        <a class="link" href="#programs">All programs &rarr;</a>
+      </div>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-art art-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22V4M4 4h13l-2 4 2 4H4"/></svg></div>
+          <div class="card-body">
+            <h3>India Day Celebration</h3>
+            <p>Our signature Independence Day festival and parade — a day of music, dance, food and national pride shared with the whole region.</p>
+            <a class="link" href="#events">Learn more &rarr;</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-art art-2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c2 3 3 5 3 7a3 3 0 0 1-6 0c0-2 1-4 3-7z"/><path d="M5 15h14l-2 6H7z"/></svg></div>
+          <div class="card-body">
+            <h3>Festivals &amp; Culture</h3>
+            <p>Diwali, Holi and Republic Day events, along with performing-arts showcases that highlight talent from across the community.</p>
+            <a class="link" href="#events">Learn more &rarr;</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-art art-3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></div>
+          <div class="card-body">
+            <h3>Youth &amp; Seva</h3>
+            <p>Leadership, scholarships and volunteer opportunities that help the next generation connect with their roots and serve others.</p>
+            <a class="link" href="#involve">Learn more &rarr;</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Events (replace with real dates/venues) -->
+  <section id="events">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Mark your calendar</span>
+          <h2>Upcoming events</h2>
+        </div>
+        <a class="link" href="#events">View full calendar &rarr;</a>
+      </div>
+      <div class="events-list">
+        <div class="event">
+          <div class="date"><span>Jan</span><b>26</b></div>
+          <div><h3>Republic Day Celebration</h3><p>Flag hoisting, cultural program and community lunch · Venue TBA</p></div>
+          <a class="btn btn-ghost" href="#events">Details</a>
+        </div>
+        <div class="event">
+          <div class="date"><span>Mar</span><b>14</b></div>
+          <div><h3>Holi — Festival of Colors</h3><p>Music, colors and family fun for all ages · Venue TBA</p></div>
+          <a class="btn btn-ghost" href="#events">Details</a>
+        </div>
+        <div class="event">
+          <div class="date"><span>Aug</span><b>15</b></div>
+          <div><h3>India Day Festival &amp; Parade</h3><p>Our flagship celebration of India's Independence Day · Boston area</p></div>
+          <a class="btn btn-ghost" href="#events">Details</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Get involved -->
+  <section id="involve" class="involve">
+    <div class="wrap">
+      <span class="eyebrow">Get involved</span>
+      <h2>Be part of the story</h2>
+      <p class="lead">Everything we do is powered by members, volunteers and supporters like you.</p>
+      <div class="involve-grid">
+        <div class="involve-card">
+          <h3>Become a member</h3>
+          <p>Join individuals and associations across New England and help shape our community's future.</p>
+          <a class="btn btn-ghost" href="#contact">Join FIA</a>
+        </div>
+        <div class="involve-card">
+          <h3>Volunteer</h3>
+          <p>From event planning to youth mentoring, lend your time and talents where they matter most.</p>
+          <a class="btn btn-ghost" href="#contact">Sign up</a>
+        </div>
+        <div class="involve-card highlight" id="donate">
+          <h3>Donate</h3>
+          <p>Your tax-deductible gift supports cultural programs, charitable causes and youth initiatives.</p>
+          <a class="btn" href="#donate">Give today</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section>
+    <div class="wrap newsletter">
+      <div>
+        <span class="eyebrow">Stay connected</span>
+        <h2>Get event news in your inbox</h2>
+        <p class="lead" style="margin:0">Hear about festivals, volunteer drives and community updates first.</p>
+      </div>
+      <div>
+        <form id="news-form">
+          <label for="email" class="sr-only" style="position:absolute;left:-9999px">Email address</label>
+          <input id="email" type="email" required placeholder="you@example.com">
+          <button class="btn btn-primary" type="submit">Subscribe</button>
+        </form>
+        <p class="form-note" id="form-note" role="status"></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#top" style="margin-bottom:16px">
+          <span class="logo">FIA</span>
+          <span class="brand-text"><strong>FIA New England</strong><span>Foundation of Indian Americans</span></span>
+        </a>
+        <p>A volunteer-run 501(c)(3) non-profit celebrating Indian heritage and serving communities across New England.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#about">About us</a></li>
+          <li><a href="#programs">Programs</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#involve">Get involved</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li>[Mailing address]</li>
+          <li><a href="mailto:info@example.org">info@example.org</a></li>
+          <li>[Phone number]</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Follow</h4>
+        <ul>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">YouTube</a></li>
+          <li><a href="#">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; <span id="year"></span> Foundation of Indian Americans of New England. All rights reserved.</span>
+      <span>Donations are tax-deductible to the extent allowed by law.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Ashoka-chakra-style spokes for the hero graphic
+  const g = document.getElementById('spokes');
+  for (let i = 0; i < 24; i++) {
+    const a = (i * 15) * Math.PI / 180;
+    const l = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    l.setAttribute('x1', 50); l.setAttribute('y1', 50);
+    l.setAttribute('x2', 50 + 46 * Math.cos(a)); l.setAttribute('y2', 50 + 46 * Math.sin(a));
+    g.appendChild(l);
+  }
+
+  // Mobile menu
+  const btn = document.querySelector('.menu-btn');
+  const links = document.getElementById('nav-links');
+  btn.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+  });
+  links.addEventListener('click', e => {
+    if (e.target.closest('a')) { links.classList.remove('open'); btn.setAttribute('aria-expanded', false); }
+  });
+
+  // Newsletter (front-end only — connect to your email provider)
+  document.getElementById('news-form').addEventListener('submit', e => {
+    e.preventDefault();
+    document.getElementById('form-note').textContent = 'Thank you! You’re on the list.';
+    e.target.reset();
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
